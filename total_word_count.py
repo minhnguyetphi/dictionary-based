@@ -4,8 +4,8 @@ import openpyxl
 from collections import defaultdict
 
 # Paths
-input_folder = "C:/Users/tuant/Downloads/archive/data_txt"  # Folder containing the .txt files
-output_file = "total_word_counts1.xlsx"
+input_folder = ""  # Folder containing the .txt files
+output_file = "results/total_word_counts1.xlsx"
 
 # Step 1: Initialize total word counts
 total_word_counts = defaultdict(int)
