@@ -6,7 +6,7 @@ import openpyxl
 from tqdm import tqdm  # Import tqdm for progress tracking
 
 # Paths
-input_folder = "C:/Users/tuant/Downloads/archive/data_txt"  # Folder containing the .txt files
+input_folder = ""  # Folder containing the .txt files
 categories_file = "word_list/word_categories(ESG).txt"
 tone_file = "word_list/word_list_old_PN.txt"
 output_file = "results/word_counts_old.xlsx"
