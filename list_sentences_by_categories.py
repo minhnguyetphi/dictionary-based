@@ -7,9 +7,9 @@ from tqdm import tqdm  # Import tqdm for progress tracking
 
 # Paths
 input_folder = "C:/Users/tuant/Downloads/archive/data_txt"  # Folder containing the .txt files
-categories_file = "word_categories(ESG).txt"
-tone_file = "word_list_old_PN.txt"
-output_file = "word_counts_old.xlsx"
+categories_file = "word_list/word_categories(ESG).txt"
+tone_file = "word_list/word_list_old_PN.txt"
+output_file = "word_list/word_counts_old.xlsx"
 
 # Step 1: Read categories (environmental, governance, social)
 with open(categories_file, 'r') as file:
