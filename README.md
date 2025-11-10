@@ -1,1 +1,1 @@
-# dictionary-based
+# Dictionary based method (old samples)
