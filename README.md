@@ -6,13 +6,6 @@
 - Produce an Excel workbook with one sheet per theme. Each sheet shows counts by file ID (rows) and year (columns).
 - Designed to support word-based and phrase-based matching.
 
-## Key improvements in this version
-- Command-line interface (argparse) for flexible inputs.
-- Robust parsing of category files (skips comments/blank lines).
-- Efficient counting using collections.Counter and regex for multi-word phrases.
-- Proper handling when filenames don't match the expected pattern (year set to "Unknown").
-- Progress reporting with tqdm and configurable file pattern.
-
 ## Quick usage
 - Install dependencies:
   pip install openpyxl tqdm
