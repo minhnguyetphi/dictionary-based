@@ -8,8 +8,8 @@ from tqdm import tqdm  # Import tqdm for progress tracking
 # Paths
 input_folder = ""  # Folder containing the .txt files
 categories_file = "word_list/word_categories(ESG).txt"
-tone_file = "word_list/word_list_old_PN.txt"
-output_file = "results/word_counts_old.xlsx"
+theme_file = "word_list/word_list.txt"
+output_file = "results/word_counts.xlsx"
 
 # Step 1: Read categories (environmental, governance, social)
 with open(categories_file, 'r') as file:
@@ -20,17 +20,17 @@ for line in lines:
     key, words = line.strip().split(':')
     categories[key.strip()] = {word.strip().lower() for word in words.split(',')}
 
-# Step 2: Read tone categories (positive, negative, forward-looking, risk)
-with open(tone_file, 'r') as file:
+# Step 2: Read theme categories (positive, negative, forward-looking, risk)
+with open(theme_file, 'r') as file:
     lines = file.readlines()
 
-tone_categories = {}
+theme_categories = {}
 for line in lines:
     key, words = line.strip().split(':')
-    tone_categories[key.strip()] = {word.strip().lower() for word in words.split(',')}
+    theme_categories[key.strip()] = {word.strip().lower() for word in words.split(',')}
 
-# Step 3: Initialize word counts for tone categories
-word_counts = {category: defaultdict(lambda: defaultdict(lambda: "N/A")) for category in tone_categories}
+# Step 3: Initialize word counts for theme categories
+word_counts = {category: defaultdict(lambda: defaultdict(lambda: "N/A")) for category in theme_categories}
 
 # Step 4: Process all .txt files in the specified folder
 file_paths = [
@@ -54,9 +54,9 @@ for i, file_path in enumerate(tqdm(file_paths, desc="Processing files", unit="fi
             # Tokenize the text into words
             words_in_text = re.findall(r'\b\w+\b', text)
 
-            # Count occurrences of tone words
-            for category, tone_words in tone_categories.items():
-                count = sum(words_in_text.count(word) for word in tone_words)
+            # Count occurrences of theme words
+            for category, theme_words in theme_categories.items():
+                count = sum(words_in_text.count(word) for word in theme_words)
                 
                 if word_counts[category][file_id][file_year] == "N/A":
                     word_counts[category][file_id][file_year] = 0
@@ -70,13 +70,13 @@ for i, file_path in enumerate(tqdm(file_paths, desc="Processing files", unit="fi
 # Step 5: Write results to an Excel file
 workbook = openpyxl.Workbook()
 
-for tone in tone_categories:
+for theme in theme_categories:
     # Create a sheet for each tone category
-    sheet = workbook.create_sheet(title=tone.capitalize())
+    sheet = workbook.create_sheet(title=theme.capitalize())
     sheet.cell(row=1, column=1, value="ID \\ Year")
 
     # Write the headers dynamically
-    files_processed = sorted({(file_id, file_year) for file_id in word_counts[tone] for file_year in word_counts[tone][file_id]})
+    files_processed = sorted({(file_id, file_year) for file_id in word_counts[theme] for file_year in word_counts[theme][file_id]})
     file_years = sorted(set(year for _, year in files_processed))
     file_ids = sorted(set(file_id for file_id, _ in files_processed))
 
