@@ -2,8 +2,8 @@ import openpyxl
 
 # File paths
 file1 = "results/word_counts_all.xlsx"
-file2 = "results/word_counts_all3.xlsx"
-output_file = "results/word_counts_combined2.xlsx"
+file2 = "results/word_counts_all2.xlsx"
+output_file = "results/word_counts_combined.xlsx"
 
 # Load both workbooks
 wb1 = openpyxl.load_workbook(file1)
