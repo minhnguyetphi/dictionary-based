@@ -5,7 +5,7 @@ from collections import defaultdict
 
 # Paths
 input_folder = ""  # Folder containing the .txt files
-output_file = "results/total_word_counts1.xlsx"
+output_file = "results/total_word_counts.xlsx"
 
 # Step 1: Initialize total word counts
 total_word_counts = defaultdict(int)
